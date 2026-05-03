@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פיקרד ניהול נכסים | Picard Property Management | Picard Gestion Immobilière</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Heebo:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C8A96E;
+    --gold-light: #E8D5B0;
+    --gold-dark: #8B6B35;
+    --navy: #1A2744;
+    --navy-light: #2A3D6A;
+    --cream: #F9F5EF;
+    --cream-dark: #EEE8DC;
+    --text-dark: #1A1A2E;
+    --text-mid: #4A4A6A;
+    --text-light: #8A8AAA;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── LANGUAGE SWITCHER ─── */
+  .lang-bar {
+    background: var(--navy);
+    padding: 10px 40px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .lang-btn {
+    background: none;
+    border: 1px solid rgba(200,169,110,0.4);
+    color: var(--gold-light);
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding: 5px 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+  .lang-btn:hover, .lang-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.08) 0%, transparent 70%),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 80px,
+        rgba(200,169,110,0.03) 80px,
+        rgba(200,169,110,0.03) 81px
+      );
+  }
+  .hero-ornament {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 30px;
+  }
+  .hero-tag {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 72px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--gold-light);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 50px;
+    max-width: 600px;
+    position: relative;
+  }
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 50px;
+    position: relative;
+  }
+  .hero-divider::before {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--gold);
+    font-size: 10px;
+    background: var(--navy);
+    padding: 0 8px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 16px 36px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200,169,110,0.4);
+  }
+  .btn-outline {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 16px 36px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .btn-outline:hover {
+    background: rgba(200,169,110,0.1);
+    transform: translateY(-2px);
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 90px 40px; }
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  .section-lead {
+    font-size: 17px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 24px 0;
+  }
+  .max-container { max-width: 1100px; margin: 0 auto; }
+
+  /* ─── ABOUT ─── */
+  .about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .about-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 50px;
+  }
+  .stat-box {
+    border-right: 3px solid var(--gold);
+    padding-right: 20px;
+  }
+  html[dir="ltr"] .stat-box { border-right: none; border-left: 3px solid var(--gold); padding-right: 0; padding-left: 20px; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--gold); }
+  .stat-label {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  .about-visual {
+    background: var(--navy);
+    border-radius: 4px;
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 200px; height: 200px;
+    border: 1px solid rgba(200,169,110,0.2);
+    border-radius: 50%;
+    transform: translate(40%, 40%);
+  }
+  .about-visual-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+    display: block;
+    filter: sepia(1) saturate(2) hue-rotate(10deg);
+  }
+  .about-visual-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+  .about-visual-sig {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--cream); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 60px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .service-card {
+    background: var(--white);
+    border: 1px solid rgba(200,169,110,0.2);
+    padding: 40px 32px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.3s;
+  }
+  .service-card:hover::before { height: 100%; }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(26,39,68,0.1);
+    border-color: rgba(200,169,110,0.4);
+  }
+  .service-icon {
+    width: 54px; height: 54px;
+    background: rgba(200,169,110,0.12);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+  }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .service-desc {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  /* ─── WHY ─── */
+  .why { background: var(--navy); padding: 90px 40px; }
+  .why .section-title { color: var(--white); }
+  .why .section-lead { color: var(--gold-light); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .why-item { text-align: center; padding: 20px; }
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .why-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .why-desc {
+    font-size: 14px;
+    color: var(--gold-light);
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact { background: var(--cream-dark); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+  }
+  .contact-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .contact-icon-wrap {
+    width: 50px; height: 50px;
+    background: var(--navy);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .contact-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .contact-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-value:hover { color: var(--gold-dark); }
+  .contact-note {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+  .contact-cta-box {
+    background: var(--navy);
+    border-radius: 4px;
+    padding: 50px 44px;
+    text-align: center;
+  }
+  .contact-cta-box .section-title { color: var(--white); font-size: 28px; }
+  .contact-cta-box p {
+    color: var(--gold-light);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 36px;
+    opacity: 0.85;
+  }
+  .cta-col { display: flex; flex-direction: column; gap: 14px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--text-dark);
+    padding: 40px;
+    text-align: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+  footer span { color: var(--gold); opacity: 0.7; }
+
+  /* ─── LANGUAGE SECTIONS ─── */
+  .lang-section { display: none; }
+  .lang-section.active { display: block; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .lang-bar { padding: 10px 20px; }
+    section { padding: 60px 24px; }
+    .hero { padding: 60px 24px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { display: none; }
+    .about-stat-row { grid-template-columns: 1fr 1fr; }
+    footer { padding: 30px 24px; }
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE BAR -->
+<nav class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('he')">עברית</button>
+  <button class="lang-btn" onclick="setLang('en')">English</button>
+  <button class="lang-btn" onclick="setLang('fr')">Français</button>
+</nav>
+
+<!-- ══════════════════════════════════════════ HEBREW ══ -->
+<div id="lang-he" class="lang-section active" dir="rtl">
+
+  <header class="hero">
+    <p class="hero-tag">ניהול נכסים מקצועי ואישי</p>
+    <h1>פיקרד <span>ניהול נכסים</span></h1>
+    <p class="hero-sub">הנכס שלך בידיים טובות — ירושלים · מודיעין · אילת</p>
+    <div class="hero-divider"></div>
+    <div class="cta-row">
+      <a href="https://wa.me/972544634234" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.126 1.535 5.865L.057 23.854a.5.5 0 0 0 .608.608l6.059-1.463A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.497-5.22-1.368l-.373-.214-3.869.934.977-3.788-.234-.392A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        וואטסאפ
+      </a>
+      <a href="mailto:picnadlan@gmail.com" class="btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        שלח מייל
+      </a>
+    </div>
+  </header>
+
+  <section class="about">
+    <div class="about-grid">
+      <div>
+        <span class="section-tag">אודות</span>
+        <h2 class="section-title fade-up">ניסיון, אמינות<br>ושירות אישי</h2>
+        <div class="gold-line"></div>
+        <p class="section-lead fade-up">פיקרד ניהול נכסים מספק מענה מקיף ואישי לבעלי דירות בירושלים, מודיעין ואילת. אנו מאמינים שנכס מושכר היטב מתחיל בניהול חכם, ביחסי אמון עם השוכרים ובזמינות מלאה לכל צורך.</p>
+        <div class="about-stat-row fade-up">
+          <div class="stat-box">
+            <div class="stat-num">+<span>15</span></div>
+            <div class="stat-label">שנות ניסיון בניהול נכסים</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num"><span>100</span>%</div>
+            <div class="stat-label">שירות אישי ומקצועי</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual fade-up">
+        <span class="about-visual-icon">🏙️</span>
+        <p class="about-visual-text">"הנכס שלך מנוהל כאילו היה שלנו — בזהירות, במקצועיות ובלב שלם."</p>
+        <p class="about-visual-sig">— יעקב פיקרד</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="max-container">
+      <span class="section-tag">שירותים</span>
+      <h2 class="section-title fade-up">מה אנחנו מציעים</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon">🔍</div>
+          <h3 class="service-title">איתור שוכרים</h3>
+          <p class="service-desc">איתור שוכרים בעלי רקע יציב ויכולת כלכלית מוכחת — בדיקה יסודית לפני כל חוזה.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">📞</div>
+          <h3 class="service-title">מענה ושירות</h3>
+          <p class="service-desc">זמינות מלאה עבורך ועבור השוכרים לטיפול בכל צורכי הנכס, בכל שאלה ובכל בעיה.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🔧</div>
+          <h3 class="service-title">תיקונים ושיפוצים</h3>
+          <p class="service-desc">ניהול ופיקוח מקצועי על ביצוע תיקונים ושיפוצים בנכס — על פי הצורך ובתקציב הנכון.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">💳</div>
+          <h3 class="service-title">מעקב תשלומים</h3>
+          <p class="service-desc">מעקב שוטף אחר חיובים ותשלומי שכר דירה, עם דיווח שקוף ומסודר לבעל הנכס.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">📋</div>
+          <h3 class="service-title">עדכונים שוטפים</h3>
+          <p class="service-desc">עדכון תקופתי מסודר על הנעשה בנכס — כך שתהיה תמיד מעודכן ורגוע.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🤝</div>
+          <h3 class="service-title">ליווי אישי</h3>
+          <p class="service-desc">שירות אישי ומקצועי לכל אורך הדרך — לא מוקד, לא מחלקות, אלא אדם אחד שאחראי.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="max-container">
+      <span class="section-tag" style="color:var(--gold)">למה לבחור בנו</span>
+      <h2 class="section-title fade-up">פשוט נכון לנכס שלך</h2>
+      <div class="why-grid">
+        <div class="why-item fade-up">
+          <div class="why-num">01</div>
+          <h3 class="why-title">3 ערים, היכרות עמוקה</h3>
+          <p class="why-desc">היכרות מעמיקה עם שוק השכירות בירושלים, מודיעין ואילת</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">02</div>
+          <h3 class="why-title">חיסכון בזמן וכסף</h3>
+          <p class="why-desc">ניהול מקצועי שמונע בעיות ומפחית עלויות בטווח הארוך</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">03</div>
+          <h3 class="why-title">שקיפות מלאה</h3>
+          <p class="why-desc">דיווח שוטף, שקוף ומדויק — אתה תמיד יודע מה קורה</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">04</div>
+          <h3 class="why-title">לקוחות מרוצים</h3>
+          <p class="why-desc">ניסיון של שנים ומוניטין מוכח של שירות אמין ואיכותי</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="contact-grid">
+      <div>
+        <span class="section-tag">צור קשר</span>
+        <h2 class="section-title fade-up">נשמח לשמוע ממך</h2>
+        <div class="gold-line"></div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">📱</div>
+          <div>
+            <p class="contact-label">טלפון ווואטסאפ</p>
+            <a href="https://wa.me/972544634234" class="contact-value">054-463-4234</a>
+            <p class="contact-note">זמין גם בווואטסאפ</p>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">✉️</div>
+          <div>
+            <p class="contact-label">דואר אלקטרוני</p>
+            <a href="mailto:picnadlan@gmail.com" class="contact-value">picnadlan@gmail.com</a>
+            <p class="contact-note">נחזור אליך בהקדם</p>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">📍</div>
+          <div>
+            <p class="contact-label">אזור פעילות</p>
+            <p class="contact-value" style="cursor:default">ירושלים · מודיעין · אילת</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta-box fade-up">
+        <h3 class="section-title">מוכן לדבר?</h3>
+        <p>צור קשר עכשיו ונבנה יחד את הפתרון הנכון לנכס שלך. שיחה ראשונה — ללא עלות וללא התחייבות.</p>
+        <div class="cta-col">
+          <a href="https://wa.me/972544634234" class="btn-primary" style="justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.126 1.535 5.865L.057 23.854a.5.5 0 0 0 .608.608l6.059-1.463A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.497-5.22-1.368l-.373-.214-3.869.934.977-3.788-.234-.392A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            שלח וואטסאפ עכשיו
+          </a>
+          <a href="mailto:picnadlan@gmail.com" class="btn-outline" style="justify-content:center;color:var(--gold-light);border-color:rgba(200,169,110,0.4);">
+            שלח מייל
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 פיקרד ניהול נכסים — <span>ירושלים · מודיעין · אילת</span> | 054-463-4234 | picnadlan@gmail.com</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════ ENGLISH ══ -->
+<div id="lang-en" class="lang-section" dir="ltr">
+
+  <header class="hero">
+    <p class="hero-tag">Professional & Personal Property Management</p>
+    <h1>Picard <span>Property Management</span></h1>
+    <p class="hero-sub">Your property in good hands — Jerusalem · Modi'in · Eilat</p>
+    <div class="hero-divider"></div>
+    <div class="cta-row">
+      <a href="https://wa.me/972544634234" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.126 1.535 5.865L.057 23.854a.5.5 0 0 0 .608.608l6.059-1.463A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.497-5.22-1.368l-.373-.214-3.869.934.977-3.788-.234-.392A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:picnadlan@gmail.com" class="btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        Send Email
+      </a>
+    </div>
+  </header>
+
+  <section class="about">
+    <div class="about-grid" style="direction:ltr">
+      <div>
+        <span class="section-tag">About</span>
+        <h2 class="section-title fade-up">Experience, Trust<br>& Personal Service</h2>
+        <div class="gold-line"></div>
+        <p class="section-lead fade-up">Picard Property Management provides comprehensive, personal service to property owners in Jerusalem, Modi'in, and Eilat. We believe that a well-rented property starts with smart management, a relationship of trust with tenants, and full availability for every need.</p>
+        <div class="about-stat-row" style="direction:ltr" >
+          <div class="stat-box">
+            <div class="stat-num">+<span>15</span></div>
+            <div class="stat-label">Years of property management experience</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num"><span>100</span>%</div>
+            <div class="stat-label">Personal & professional service</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual fade-up">
+        <span class="about-visual-icon">🏙️</span>
+        <p class="about-visual-text">"Your property managed as if it were our own — with care, professionalism, and full commitment."</p>
+        <p class="about-visual-sig">— Yaakov Picard</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" style="direction:ltr">
+    <div class="max-container">
+      <span class="section-tag">Services</span>
+      <h2 class="section-title fade-up">What We Offer</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon">🔍</div>
+          <h3 class="service-title">Tenant Screening</h3>
+          <p class="service-desc">Finding tenants with a stable background and proven financial capacity — thorough vetting before every lease.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">📞</div>
+          <h3 class="service-title">Availability & Support</h3>
+          <p class="service-desc">Full availability for you and your tenants to handle all property needs, questions, and issues.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🔧</div>
+          <h3 class="service-title">Repairs & Renovations</h3>
+          <p class="service-desc">Professional management and supervision of repairs and renovations — on time and on budget.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">💳</div>
+          <h3 class="service-title">Rent Tracking</h3>
+          <p class="service-desc">Ongoing tracking of charges and rent payments, with transparent and organized reporting to the owner.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">📋</div>
+          <h3 class="service-title">Regular Updates</h3>
+          <p class="service-desc">Periodic, organized updates on what's happening at your property — so you're always informed and at ease.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🤝</div>
+          <h3 class="service-title">Personal Accompaniment</h3>
+          <p class="service-desc">Personal, professional service throughout — not a call center, not departments, just one accountable person.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" style="direction:ltr">
+    <div class="max-container">
+      <span class="section-tag" style="color:var(--gold)">Why Choose Us</span>
+      <h2 class="section-title fade-up">Simply Right for Your Property</h2>
+      <div class="why-grid">
+        <div class="why-item fade-up">
+          <div class="why-num">01</div>
+          <h3 class="why-title">3-City Expertise</h3>
+          <p class="why-desc">Deep knowledge of the rental markets in Jerusalem, Modi'in, and Eilat</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">02</div>
+          <h3 class="why-title">Save Time & Money</h3>
+          <p class="why-desc">Professional management that prevents problems and reduces costs long-term</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">03</div>
+          <h3 class="why-title">Full Transparency</h3>
+          <p class="why-desc">Ongoing, transparent, and accurate reporting — you always know what's happening</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">04</div>
+          <h3 class="why-title">Satisfied Clients</h3>
+          <p class="why-desc">Years of experience and a proven reputation for reliable, quality service</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" style="direction:ltr">
+    <div class="contact-grid">
+      <div>
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title fade-up">We'd Love to Hear From You</h2>
+        <div class="gold-line"></div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">📱</div>
+          <div>
+            <p class="contact-label">Phone & WhatsApp</p>
+            <a href="https://wa.me/972544634234" class="contact-value">+972 54-463-4234</a>
+            <p class="contact-note">Available on WhatsApp</p>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">✉️</div>
+          <div>
+            <p class="contact-label">Email</p>
+            <a href="mailto:picnadlan@gmail.com" class="contact-value">picnadlan@gmail.com</a>
+            <p class="contact-note">We'll get back to you promptly</p>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">📍</div>
+          <div>
+            <p class="contact-label">Service Area</p>
+            <p class="contact-value" style="cursor:default">Jerusalem · Modi'in · Eilat</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta-box fade-up">
+        <h3 class="section-title">Ready to Talk?</h3>
+        <p>Get in touch now and let's build the right solution for your property together. First consultation — no cost, no obligation.</p>
+        <div class="cta-col">
+          <a href="https://wa.me/972544634234" class="btn-primary" style="justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.126 1.535 5.865L.057 23.854a.5.5 0 0 0 .608.608l6.059-1.463A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.497-5.22-1.368l-.373-.214-3.869.934.977-3.788-.234-.392A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            WhatsApp Us Now
+          </a>
+          <a href="mailto:picnadlan@gmail.com" class="btn-outline" style="justify-content:center;color:var(--gold-light);border-color:rgba(200,169,110,0.4);">
+            Send Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Picard Property Management — <span>Jerusalem · Modi'in · Eilat</span> | +972 54-463-4234 | picnadlan@gmail.com</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════ FRENCH ══ -->
+<div id="lang-fr" class="lang-section" dir="ltr">
+
+  <header class="hero">
+    <p class="hero-tag">Gestion immobilière professionnelle & personnelle</p>
+    <h1>Picard <span>Gestion Immobilière</span></h1>
+    <p class="hero-sub">Votre bien en bonnes mains — Jérusalem · Modi'in · Eilat</p>
+    <div class="hero-divider"></div>
+    <div class="cta-row">
+      <a href="https://wa.me/972544634234" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.126 1.535 5.865L.057 23.854a.5.5 0 0 0 .608.608l6.059-1.463A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.497-5.22-1.368l-.373-.214-3.869.934.977-3.788-.234-.392A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:picnadlan@gmail.com" class="btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        Envoyer un email
+      </a>
+    </div>
+  </header>
+
+  <section class="about">
+    <div class="about-grid" style="direction:ltr">
+      <div>
+        <span class="section-tag">À propos</span>
+        <h2 class="section-title fade-up">Expérience, Confiance<br>& Service Personnalisé</h2>
+        <div class="gold-line"></div>
+        <p class="section-lead fade-up">Picard Gestion Immobilière offre un service complet et personnalisé aux propriétaires à Jérusalem, Modi'in et Eilat. Nous croyons qu'un bien bien loué commence par une gestion intelligente, une relation de confiance avec les locataires et une disponibilité totale.</p>
+        <div class="about-stat-row" style="direction:ltr">
+          <div class="stat-box">
+            <div class="stat-num">+<span>15</span></div>
+            <div class="stat-label">Années d'expérience en gestion immobilière</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num"><span>100</span>%</div>
+            <div class="stat-label">Service personnel et professionnel</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual fade-up">
+        <span class="about-visual-icon">🏙️</span>
+        <p class="about-visual-text">« Votre bien géré comme s'il était le nôtre — avec soin, professionnalisme et engagement total. »</p>
+        <p class="about-visual-sig">— Yaakov Picard</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" style="direction:ltr">
+    <div class="max-container">
+      <span class="section-tag">Services</span>
+      <h2 class="section-title fade-up">Ce Que Nous Proposons</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon">🔍</div>
+          <h3 class="service-title">Sélection des locataires</h3>
+          <p class="service-desc">Recherche de locataires à profil stable et capacité financière prouvée — vérification approfondie avant chaque bail.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">📞</div>
+          <h3 class="service-title">Disponibilité & Support</h3>
+          <p class="service-desc">Disponibilité totale pour vous et vos locataires pour traiter tous les besoins, questions et problèmes liés au bien.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🔧</div>
+          <h3 class="service-title">Réparations & Rénovations</h3>
+          <p class="service-desc">Gestion et supervision professionnelle des travaux de réparation et de rénovation — dans les délais et le budget prévu.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">💳</div>
+          <h3 class="service-title">Suivi des loyers</h3>
+          <p class="service-desc">Suivi régulier des charges et des paiements de loyer, avec des rapports transparents et organisés au propriétaire.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">📋</div>
+          <h3 class="service-title">Mises à jour régulières</h3>
+          <p class="service-desc">Des comptes rendus périodiques et organisés sur l'état de votre bien — pour que vous soyez toujours informé et serein.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🤝</div>
+          <h3 class="service-title">Accompagnement personnel</h3>
+          <p class="service-desc">Service personnel et professionnel tout au long — pas un centre d'appel, pas des départements, une seule personne responsable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" style="direction:ltr">
+    <div class="max-container">
+      <span class="section-tag" style="color:var(--gold)">Pourquoi nous choisir</span>
+      <h2 class="section-title fade-up">Simplement le bon choix pour votre bien</h2>
+      <div class="why-grid">
+        <div class="why-item fade-up">
+          <div class="why-num">01</div>
+          <h3 class="why-title">Expertise sur 3 villes</h3>
+          <p class="why-desc">Connaissance approfondie des marchés locatifs de Jérusalem, Modi'in et Eilat</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">02</div>
+          <h3 class="why-title">Économie de temps & argent</h3>
+          <p class="why-desc">Une gestion professionnelle qui prévient les problèmes et réduit les coûts à long terme</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">03</div>
+          <h3 class="why-title">Transparence totale</h3>
+          <p class="why-desc">Rapports réguliers, transparents et précis — vous savez toujours ce qui se passe</p>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-num">04</div>
+          <h3 class="why-title">Clients satisfaits</h3>
+          <p class="why-desc">Des années d'expérience et une réputation prouvée de service fiable et de qualité</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" style="direction:ltr">
+    <div class="contact-grid">
+      <div>
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title fade-up">Nous Sommes à Votre Écoute</h2>
+        <div class="gold-line"></div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">📱</div>
+          <div>
+            <p class="contact-label">Téléphone & WhatsApp</p>
+            <a href="https://wa.me/972544634234" class="contact-value">+972 54-463-4234</a>
+            <p class="contact-note">Disponible sur WhatsApp</p>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">✉️</div>
+          <div>
+            <p class="contact-label">Email</p>
+            <a href="mailto:picnadlan@gmail.com" class="contact-value">picnadlan@gmail.com</a>
+            <p class="contact-note">Nous vous répondrons rapidement</p>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-icon-wrap">📍</div>
+          <div>
+            <p class="contact-label">Zone d'activité</p>
+            <p class="contact-value" style="cursor:default">Jérusalem · Modi'in · Eilat</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta-box fade-up">
+        <h3 class="section-title">Prêt à discuter ?</h3>
+        <p>Contactez-nous maintenant et construisons ensemble la solution adaptée à votre bien. Première consultation — sans frais ni engagement.</p>
+        <div class="cta-col">
+          <a href="https://wa.me/972544634234" class="btn-primary" style="justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.126 1.535 5.865L.057 23.854a.5.5 0 0 0 .608.608l6.059-1.463A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.497-5.22-1.368l-.373-.214-3.869.934.977-3.788-.234-.392A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Nous contacter sur WhatsApp
+          </a>
+          <a href="mailto:picnadlan@gmail.com" class="btn-outline" style="justify-content:center;color:var(--gold-light);border-color:rgba(200,169,110,0.4);">
+            Envoyer un email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Picard Gestion Immobilière — <span>Jérusalem · Modi'in · Eilat</span> | +972 54-463-4234 | picnadlan@gmail.com</p>
+  </footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+  event.target.classList.add('active');
+  document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  observeFades();
+}
+
+function observeFades() {
+  const fades = document.querySelectorAll('.fade-up:not(.visible)');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fades.forEach(el => obs.observe(el));
+}
+
+document.addEventListener('DOMContentLoaded', observeFades);
+</script>
+</body>
+</html>
