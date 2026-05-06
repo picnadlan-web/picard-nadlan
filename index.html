@@ -478,6 +478,74 @@
     footer { padding: 30px 24px; }
   }
 
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--white); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    margin-top: 60px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .testimonial-card {
+    background: var(--cream);
+    border: 1px solid rgba(200,169,110,0.2);
+    border-radius: 4px;
+    padding: 36px 32px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '❝';
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 48px;
+    color: var(--gold);
+    opacity: 0.25;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+  html[dir="ltr"] .testimonial-card::before { right: auto; left: 24px; }
+  .testimonial-text {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid rgba(200,169,110,0.2);
+    padding-top: 18px;
+  }
+  .testimonial-avatar {
+    width: 42px; height: 42px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .testimonial-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--navy);
+  }
+  .testimonial-location {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 2px;
+  }
+
   /* ─── SCROLL ANIMATION ─── */
   .fade-up {
     opacity: 0;
@@ -659,6 +727,55 @@
     </div>
   </section>
 
+  <section class="testimonials">
+    <div class="max-container">
+      <span class="section-tag">המלצות</span>
+      <h2 class="section-title fade-up">מה אומרים הלקוחות שלנו</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">אני ממליץ על יעקב שמטפל בדירה שלנו במודיעין. במהלך השנים יעקב נתן מענה לכל בעיה שעלתה וטיפל בבעיות סבוכות מול שוכרים, מול ועד הבית ודיירי הבניין והוביל עבודות לתיקון בבניין. הוא עושה מעל ומעבר ברוח טובה ובהצלחה מרובה תוך שמירה על זכויותינו וצמצום הוצאות.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">י</div>
+            <div>
+              <p class="testimonial-name">יואל ושרה</p>
+              <p class="testimonial-location">מושב מבוא מודיעין</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">אנחנו שמחים לכתוב המלצה ליעקב פיקרד שנותן לנו שירות לדירה שבבעלותנו בשכונת גבעת שאול. יעקב נותן שירות אמין ומאוד יעיל, ועונה על כל פניה של השוכרים וכל צורך שקשור בטיפול בירוקרטי ו/או אחזקת הנכס תמיד ברוח טובה ומענה זריז. אנחנו ממליצים עליו בשמחה.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">מ</div>
+            <div>
+              <p class="testimonial-name">מיכאל ורותי</p>
+              <p class="testimonial-location">גוש עציון</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">יעקב פיקרד מנהל את הדירה שלי בקטמונים בירושלים. למעט עדכונים שוטפים יש לי שקט ובטחון וידיעה ברורה שהכול מטופל על הצד הטוב ביותר.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">נ</div>
+            <div>
+              <p class="testimonial-name">נחום</p>
+              <p class="testimonial-location">ירושלים</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">כבר כמה שנים שיעקב מנהל את הנכס שלנו בשכונת קטמון. הוא זמין תמיד ונותן מענה מהיר לנו כבעלי הנכס ולשוכרים לכל צורך שקשור לדירה. אנו ממליצים בחום.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">מ</div>
+            <div>
+              <p class="testimonial-name">מאיר ה'</p>
+              <p class="testimonial-location">ירושלים</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <p>© 2025 פיקרד ניהול נכסים — <span>ירושלים · מודיעין · אילת</span> | 054-463-4234 | picnadlan@gmail.com</p>
   </footer>
@@ -824,6 +941,55 @@
     </div>
   </section>
 
+  <section class="testimonials" style="direction:ltr">
+    <div class="max-container">
+      <span class="section-tag">Testimonials</span>
+      <h2 class="section-title fade-up">What Our Clients Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">I recommend Yaakov who manages our apartment in Modi'in. Over the years, Yaakov addressed every issue that arose and handled complex situations with tenants, the building committee, and led repair work in the building. He goes above and beyond with a great attitude, while protecting our rights and minimizing expenses.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">Y</div>
+            <div>
+              <p class="testimonial-name">Yoel & Sarah</p>
+              <p class="testimonial-location">Mevo Modi'in</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">We are happy to recommend Yaakov Picard who manages our apartment in the Givat Shaul neighborhood. Yaakov provides reliable and very efficient service, responding to every tenant request and every maintenance need — always with a positive attitude and a quick response. We highly recommend him.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <p class="testimonial-name">Michael & Ruth</p>
+              <p class="testimonial-location">Gush Etzion</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">Yaakov Picard manages my apartment in the Katamon neighborhood in Jerusalem. Beyond regular updates, I have peace of mind and the clear knowledge that everything is handled in the best possible way.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">N</div>
+            <div>
+              <p class="testimonial-name">Nachum</p>
+              <p class="testimonial-location">Jerusalem</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">For several years now, Yaakov has been managing our property in the Katamon neighborhood. He is always available and responds quickly to us as owners and to tenants for any need related to the apartment. We warmly recommend him.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <p class="testimonial-name">Meir H.</p>
+              <p class="testimonial-location">Jerusalem</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <p>© 2025 Picard Property Management — <span>Jerusalem · Modi'in · Eilat</span> | +972 54-463-4234 | picnadlan@gmail.com</p>
   </footer>
@@ -984,6 +1150,55 @@
           <a href="mailto:picnadlan@gmail.com" class="btn-outline" style="justify-content:center;color:var(--gold-light);border-color:rgba(200,169,110,0.4);">
             Envoyer un email
           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" style="direction:ltr">
+    <div class="max-container">
+      <span class="section-tag">Témoignages</span>
+      <h2 class="section-title fade-up">Ce que disent nos clients</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">Je recommande Yaakov qui gère notre appartement à Modi'in. Au fil des années, il a résolu chaque problème et géré des situations complexes avec les locataires, le syndic et les résidents de l'immeuble, et a dirigé des travaux de réparation. Il va au-delà de ce qui est demandé, avec bonne humeur, tout en protégeant nos droits et en réduisant les dépenses.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">Y</div>
+            <div>
+              <p class="testimonial-name">Yoel & Sarah</p>
+              <p class="testimonial-location">Mevo Modi'in</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">Nous sommes heureux de recommander Yaakov Picard qui gère notre appartement dans le quartier Givat Shaul. Yaakov fournit un service fiable et très efficace, répondant à chaque demande des locataires et à chaque besoin d'entretien — toujours avec une attitude positive et une réponse rapide. Nous le recommandons chaleureusement.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <p class="testimonial-name">Michael & Ruth</p>
+              <p class="testimonial-location">Gush Etzion</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">Yaakov Picard gère mon appartement dans le quartier Katamon à Jérusalem. Au-delà des mises à jour régulières, j'ai la tranquillité d'esprit et la certitude que tout est géré de la meilleure façon possible.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">N</div>
+            <div>
+              <p class="testimonial-name">Nachum</p>
+              <p class="testimonial-location">Jérusalem</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">Depuis plusieurs années, Yaakov gère notre bien dans le quartier Katamon. Il est toujours disponible et répond rapidement à nos besoins en tant que propriétaires et aux locataires pour tout ce qui concerne l'appartement. Nous le recommandons chaleureusement.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <p class="testimonial-name">Meir H.</p>
+              <p class="testimonial-location">Jérusalem</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
